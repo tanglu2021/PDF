@@ -1,0 +1,18 @@
+# 读取pdf文件中的表格
+import pdfplumber as pp
+with pp.open('C:/Users/hp/Desktop/长安汽车年报/长安汽车：2003年年度报告.pdf') as pdf:
+    page = pdf.pages[13]
+    print(page.extract_text())
+    print(page.extract_table())
+    value1 = page.extract_table()
+    import xlrd
+    import xlwt
+    index = len(value1)
+    workbook=xlwt.Workbook()
+    sheet = workbook.add_sheet("2003")
+    for i in range(0, index):
+        for j in range(0, len(value1[i])):
+            sheet.write(i, j, value1[i][j])
+    workbook.save("C:/Users/hp/Desktop/lianxi.xls")
+    print("写入成功")
+    
