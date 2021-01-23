@@ -1,8 +1,12 @@
-# 读取pdf文件中的表格
+# 读取文字并导出文本
 import pdfplumber as pp
 with pp.open('C:/Users/hp/Desktop/长安汽车年报/长安汽车：2003年年度报告.pdf') as pdf:
     page = pdf.pages[13]
-    print(page.extract_text())
+    text = page.extract_text()
+    print(text)
+    txt_file = open("C:/Users/hp/Desktop/changan.text", mode='a', encoding = 'utf-8')
+    txt_file.write(text)  
+#读取表格并导出excel
     print(page.extract_table())
     value1 = page.extract_table()
     import xlrd
