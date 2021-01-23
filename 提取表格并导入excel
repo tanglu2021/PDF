@@ -2,7 +2,9 @@
 import pdfplumber as pp
 import txt
 with pp.open('C:/Users/hp/Desktop/长安汽车年报/长安汽车：2003年年度报告.pdf') as pdf:
-    page = pdf.pages[13]
+    i = pdf.pages
+    for i in range(11,23):
+        page = pdf.pages[i]
     text = page.extract_text()
     print(text)
     txt_file = open("C:/Users/hp/Desktop/changan.text", mode='a', encoding = 'utf-8')
