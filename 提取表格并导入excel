@@ -1,5 +1,6 @@
 # 读取文字并导出文本
 import pdfplumber as pp
+import txt
 with pp.open('C:/Users/hp/Desktop/长安汽车年报/长安汽车：2003年年度报告.pdf') as pdf:
     page = pdf.pages[13]
     text = page.extract_text()
