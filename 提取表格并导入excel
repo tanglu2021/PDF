@@ -23,3 +23,24 @@ with pp.open('C:/Users/hp/Desktop/长安汽车年报/长安汽车：2003年年�
     workbook.save("C:/Users/hp/Desktop/lianxi.xls")
     print("写入成功")
     
+import pdfplumber
+import pandas as pd
+import os
+import dataframe
+from pandas import ExcelWriter
+from openpyxl import Workbook
+import tabula
+list = open("公司名称.txt",encoding="utf-8")
+for line in list:
+    name1=str(line[2:-1])
+    name2=str(line[:-1])
+    print(line)
+    #读取
+    file_folder="财务报表/";file_name="提取自"+name1
+    path1=file_folder+file_name+'.pdf'
+    with pdfplumber.open(path1) as pdf:
+        for page in pdf.pages:
+            tables=page.extract_tables()
+            for table in tables:
+                df=pd.DataFrame(table[1:0],columns=table[0])
+        print(df)
